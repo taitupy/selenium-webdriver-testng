@@ -30,21 +30,21 @@ public class Topic_01_Check_Environment {
 	}
 
 	@Test
-	public void TC_01_ValidateCurrentUrl() {
+	public void TC_01() {
 		// Login Page Url matching
 		String loginPageUrl = driver.getCurrentUrl();
 		Assert.assertEquals(loginPageUrl, "https://www.facebook.com/");
 	}
 
 	@Test
-	public void TC_02_ValidatePageTitle() {
+	public void TC_02() {
 		// Login Page title
 		String loginPageTitle = driver.getTitle();
 		Assert.assertEquals(loginPageTitle, "Facebook – log in or sign up");
 	}
 
 	@Test
-	public void TC_03_LoginFormDisplayed() {
+	public void TC_03() {
 		// Login form displayed
 		Assert.assertTrue(driver.findElement(By.xpath("//form[@data-testid='royal_login_form']")).isDisplayed());
 	}
