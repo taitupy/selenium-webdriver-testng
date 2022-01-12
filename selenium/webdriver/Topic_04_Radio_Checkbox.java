@@ -1,5 +1,16 @@
 package webdriver;
 
-public class Topic_04_Radio_Checkbox {
+import org.testng.annotations.Test;
 
+public class Topic_04_Radio_Checkbox {
+	@Test
+	public void TC_01() {
+		
+	}
+	
+	@Test
+	public void TC_02() {
+		
+	}
+	
 }
