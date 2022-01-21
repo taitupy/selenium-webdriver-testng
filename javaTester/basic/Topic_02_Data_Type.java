@@ -3,6 +3,8 @@ package basic;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.openqa.selenium.WebDriver;
+
 public class Topic_02_Data_Type {
 
 	public static void main(String[] args) {
@@ -56,6 +58,8 @@ public class Topic_02_Data_Type {
 		// Class
 		Topic_02_Data_Type topic = new Topic_02_Data_Type();
 		
+		// Interface
+		WebDriver driver;
 		
 		// Collection: List/ Set/ Queue
 		//List<String> addresses = new ArrayList<String>();
