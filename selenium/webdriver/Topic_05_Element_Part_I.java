@@ -59,7 +59,7 @@ public class Topic_05_Element_Part_I {
 		// Chụp hình của element lại lưu bằng format nào đó
 		String base64Image = element.getScreenshotAs(OutputType.BASE64); //*
 		element.getScreenshotAs(OutputType.BYTES);
-		element.getScreenshotAs(OutputType.FILE);
+		element.getScreenshotAs(OutputType.FILE);	
 		
 		// Lấy ra tên thẻ (html) của element
 		element = driver.findElement(By.xpath("//input[@id='email']"));
