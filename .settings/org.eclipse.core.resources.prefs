@@ -1,9 +1,11 @@
 eclipse.preferences.version=1
 encoding//javaTester/basic/Topic_02_Data_Type.java=UTF-8
 encoding//javaTester/basic/Topic_03_Default_Value.java=UTF-8
+encoding//javaTester/basic/Topic_04_Random_Data.java=UTF-8
 encoding//selenium/webdriver/Topic_02_Locator.java=UTF-8
 encoding//selenium/webdriver/Topic_04_Browser_Part_I.java=UTF-8
 encoding//selenium/webdriver/Topic_04_Browser_Part_II.java=UTF-8
 encoding//selenium/webdriver/Topic_05_Element_Part_I.java=UTF-8
 encoding//selenium/webdriver/Topic_05_Element_Part_II.java=UTF-8
-encoding//selenium/webdriver/Topic_05_Element_Part_III.java=UTF-8
+encoding//selenium/webdriver/Topic_05_Element_Part_III_Login.java=UTF-8
+encoding//selenium/webdriver/Topic_05_Element_Part_III_Register.java=UTF-8

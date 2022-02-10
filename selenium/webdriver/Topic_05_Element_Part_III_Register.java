@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class Topic_05_Element_Part_III {
+public class Topic_05_Element_Part_III_Register {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 	
@@ -45,7 +45,7 @@ public class Topic_05_Element_Part_III {
 	}
 
 	@Test
-	public void TC_01_Register_Empty_Data() {
+	public void Register_01_Empty_Data() {
 		
 		// Đảm bảo dữ liệu các field này luôn empty/ null
 		driver.findElement(fullNameTextboxBy).clear();
@@ -67,7 +67,7 @@ public class Topic_05_Element_Part_III {
 	}
 	
 	@Test
-	public void TC_02_Register_Invalid_Email() {
+	public void Register_02_Invalid_Email() {
 		driver.findElement(fullNameTextboxBy).sendKeys("Bruce Lee");
 		driver.findElement(emailTextboxBy).sendKeys("123@456@789");
 		driver.findElement(confirmEmailTextboxBy).sendKeys("123@456@789");
@@ -81,7 +81,7 @@ public class Topic_05_Element_Part_III {
 		
 	}
 	@Test
-	public void TC_03_Register_Incorrect_Confirm_Email() {
+	public void Register_03_Incorrect_Confirm_Email() {
 		driver.findElement(fullNameTextboxBy).sendKeys("Bruce Lee");
 		driver.findElement(emailTextboxBy).sendKeys("123@456");
 		driver.findElement(confirmEmailTextboxBy).sendKeys("123@456@789");
@@ -95,7 +95,7 @@ public class Topic_05_Element_Part_III {
 	}
 	
 	@Test
-	public void TC_04_Register_Invalid_Password() {
+	public void Register_04_Invalid_Password() {
 		driver.findElement(fullNameTextboxBy).sendKeys("Bruce Lee");
 		driver.findElement(emailTextboxBy).sendKeys("123@456.789");
 		driver.findElement(confirmEmailTextboxBy).sendKeys("123@456.789");
@@ -109,7 +109,7 @@ public class Topic_05_Element_Part_III {
 	}
 	
 	@Test
-	public void TC_05_Register_Incorrect_Confirm_Password() {
+	public void Register_05_Invalid_Phone() {
 		driver.findElement(fullNameTextboxBy).sendKeys("Bruce Lee");
 		driver.findElement(emailTextboxBy).sendKeys("123@456.789");
 		driver.findElement(confirmEmailTextboxBy).sendKeys("123@456.789");
@@ -125,11 +125,6 @@ public class Topic_05_Element_Part_III {
 		driver.findElement(registerButtonBy).click();
 		
 		Assert.assertEquals(driver.findElement(phoneErrorMessage).getText(), "Số điện thoại bắt đầu bằng: 09 - 03 - 012 - 016 - 018 - 019");
-	}
-
-	@Test
-	public void TC_06_Register_Invalid_Phone() {
-		
 	}
 
 	@AfterClass
