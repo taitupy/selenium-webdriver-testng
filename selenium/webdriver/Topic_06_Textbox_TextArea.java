@@ -66,8 +66,7 @@ public class Topic_06_Textbox_TextArea {
 		By employeeIDTextboxBy = By.id("personal_txtEmployeeId");
 		
 
-		// Verify 'FirstName/ LastName/ EmployeeID' textbox are disabled (is not
-		// enabled)
+		// Verify 'FirstName/ LastName/ EmployeeID' textbox are disabled (is not enabled)
 		Assert.assertFalse(driver.findElement(firstNameTextboxBy).isEnabled());
 		Assert.assertFalse(driver.findElement(lastNameTextboxBy).isEnabled());
 		Assert.assertFalse(driver.findElement(employeeIDTextboxBy).isEnabled());
