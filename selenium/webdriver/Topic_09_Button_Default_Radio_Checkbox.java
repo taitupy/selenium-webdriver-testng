@@ -168,15 +168,15 @@ public class Topic_09_Button_Default_Radio_Checkbox {
 		}
 		
 		// Action - De-selected
-				for (WebElement checkbox : checkboxes) {
-					if (checkbox.isSelected()) {
-						checkbox.click();
-					}
-				}
+		for (WebElement checkbox : checkboxes) {
+			if (checkbox.isSelected()) {
+				checkbox.click();
+			}
+		}
 		// Verify - De-Selected
-				for (WebElement checkbox : checkboxes) {
-					Assert.assertFalse(checkbox.isSelected());
-				}
+		for (WebElement checkbox : checkboxes) {
+			Assert.assertFalse(checkbox.isSelected());
+		}
 	}
 	
 	public void checkToCheckbox(By by) {
