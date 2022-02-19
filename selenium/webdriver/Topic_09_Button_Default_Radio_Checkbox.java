@@ -18,12 +18,20 @@ import org.testng.annotations.Test;
 public class Topic_09_Button_Default_Radio_Checkbox {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
+	String osName = System.getProperty("os.name");
 	JavascriptExecutor jsExecutor;
 
 	@BeforeClass
 	public void beforeClass() {
+		if (osName.startsWith("Windows")) {
+			System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
+		} else if (osName.startsWith("Mac")) {
+			System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver_mac");
+		} else {
+			System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver_linux");
+		}
 		
-		System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
+		//System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
 		// driver = new ChromeDriver();
 		driver = new FirefoxDriver();
 		
@@ -33,7 +41,7 @@ public class Topic_09_Button_Default_Radio_Checkbox {
 		driver.manage().window().maximize();
 	}
 
-	@Test
+
 	public void TC_01_Button() {
 		driver.get("https://www.fahasa.com/customer/account/create");
 		
@@ -81,7 +89,7 @@ public class Topic_09_Button_Default_Radio_Checkbox {
 		
 	}
 
-	@Test
+
 	public void TC_02_Default_Radio() {
 		driver.get("https://demos.telerik.com/kendo-ui/radiobutton/index");
 		
@@ -115,7 +123,7 @@ public class Topic_09_Button_Default_Radio_Checkbox {
 		
 	}
 	
-	@Test
+
 	public void TC_03_Default_Checkbox() {
 		driver.get("https://demos.telerik.com/kendo-ui/checkbox/index");
 		
@@ -148,7 +156,7 @@ public class Topic_09_Button_Default_Radio_Checkbox {
 		
 	}
 	
-	@Test
+
 	public void TC_04_Multiple_Checkbox() {
 		driver.get("https://automationfc.github.io/multiple-fields/");
 		
@@ -177,6 +185,118 @@ public class Topic_09_Button_Default_Radio_Checkbox {
 		for (WebElement checkbox : checkboxes) {
 			Assert.assertFalse(checkbox.isSelected());
 		}
+	}
+	
+
+	public void TC_05_Custom_Radio() {
+		driver.get("https://material.angular.io/components/radio/examples");
+		
+		// 1 element phải define tới 2 locator
+		// Dễ bị nhầm lẫn: Team member họ dùng -> hiểu lầm
+		// Bảo trì: code nhiều
+		By winterCheckboxInput = By.cssSelector("input[value='Winter']");
+		
+		// Case 1: Dùng thẻ input
+		// Selenium click(); -> ElementNotInteractableException
+		// isSelected() -> Work
+		
+		// Case 2: Dùng thẻ span
+		// Selenium click(); -> Work
+		// isSelected() -> Ko work
+		
+		// Case 3: Dùng thẻ span - click()
+		// Dùng thẻ input - isSelected
+		
+		// Case 4: Dùng thẻ input
+		// Javascript - click ( ko quan tâm element ẩn/ hiện)
+		// isSelected - verify
+		
+		clickByJavascript(winterCheckboxInput);
+		sleepInSecond(2);
+		
+		Assert.assertTrue(driver.findElement(winterCheckboxInput).isSelected());
+		
+	}
+	
+	
+	public void TC_06_Custom_Checkbox() {
+		driver.get("https://material.angular.io/components/checkbox/examples");
+		
+		By checkedCheckbox = By.xpath("//input[@id='mat-checkbox-1-input']");
+		By indeterminateCheckbox = By.xpath("//input[@id='mat-checkbox-2-input']");
+		
+		clickByJavascript(checkedCheckbox);
+		sleepInSecond(1);
+		clickByJavascript(indeterminateCheckbox);
+		sleepInSecond(1);
+		
+		Assert.assertTrue(isElementSelected(checkedCheckbox));
+		Assert.assertTrue(isElementSelected(indeterminateCheckbox));
+		
+		clickByJavascript(checkedCheckbox);
+		sleepInSecond(1);
+		clickByJavascript(indeterminateCheckbox);
+		sleepInSecond(1);
+		
+		Assert.assertFalse(isElementSelected(checkedCheckbox));
+		Assert.assertFalse(isElementSelected(indeterminateCheckbox));
+	}
+	
+	public void TC_07_Custom_Radio() {
+		driver.get("https://tiemchungcovid19.gov.vn/portal/register-person");
+		
+		By myselfRadio = By.xpath("//div[text()='Đăng ký bản thân']/preceding-sibling::div/input");
+		By myfamilyRadio = By.xpath("//div[text()='Đăng ký cho người thân']/preceding-sibling::div/input");
+		
+		clickByJavascript(myfamilyRadio);
+		sleepInSecond(2);
+		
+		Assert.assertTrue(driver.findElement(By.xpath("//input[@formcontrolname='registerFullname']")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//input[@formcontrolname='registerPhoneNumber']")).isDisplayed());
+		
+		clickByJavascript(myselfRadio);
+		sleepInSecond(2);
+		
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Assert.assertEquals(driver.findElements(By.xpath("//input[@formcontrolname='registerFullname']")).size(), 0);
+		Assert.assertEquals(driver.findElements(By.xpath("//input[@formcontrolname='registerPhoneNumber']")).size(), 0);
+		
+	}
+	
+	@Test
+	public void TC_08_Custom_Radio_Google() {
+		driver.get("https://docs.google.com/forms/d/e/1FAIpQLSfiypnd69zhuDkjKgqvpID9kwO29UCzeCVrGGtbNPZXQok0jA/viewform");
+		
+		By haiPhongCityRadio = By.xpath("//div[@aria-label='Hải Phòng']");
+		By quangNamCityCheckbox = By.xpath("//div[@aria-label='Quảng Nam']");
+		By quangBinhCityCheckbox = By.xpath("//div[@aria-label='Quảng Bình']");
+		
+		
+		Assert.assertEquals(driver.findElement(haiPhongCityRadio).getAttribute("aria-checked"), "false");
+		Assert.assertEquals(driver.findElement(quangNamCityCheckbox).getAttribute("aria-checked"), "false");
+		Assert.assertEquals(driver.findElement(quangBinhCityCheckbox).getAttribute("aria-checked"), "false");
+		
+		driver.findElement(haiPhongCityRadio).click();
+		sleepInSecond(2);
+		
+		driver.findElement(quangNamCityCheckbox).click();
+		sleepInSecond(2);
+		
+		driver.findElement(quangBinhCityCheckbox).click();
+		sleepInSecond(2);
+		
+		Assert.assertEquals(driver.findElement(haiPhongCityRadio).getAttribute("aria-checked"), "true");
+		Assert.assertEquals(driver.findElement(quangNamCityCheckbox).getAttribute("aria-checked"), "true");
+		Assert.assertEquals(driver.findElement(quangBinhCityCheckbox).getAttribute("aria-checked"), "true");
+		
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@aria-label='Hải Phòng' and @aria-checked='true']")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@aria-label='Quảng Nam' and @aria-checked='true']")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@aria-label='Quảng Bình' and @aria-checked='true']")).isDisplayed());
+		
+	}
+	
+	public void clickByJavascript(By by) {
+		jsExecutor.executeScript("arguments[0].click();", driver.findElement(by));
 	}
 	
 	public void checkToCheckbox(By by) {
