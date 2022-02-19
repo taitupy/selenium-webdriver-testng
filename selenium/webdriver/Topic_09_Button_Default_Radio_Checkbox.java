@@ -271,7 +271,6 @@ public class Topic_09_Button_Default_Radio_Checkbox {
 		By quangNamCityCheckbox = By.xpath("//div[@aria-label='Quảng Nam']");
 		By quangBinhCityCheckbox = By.xpath("//div[@aria-label='Quảng Bình']");
 		
-		
 		Assert.assertEquals(driver.findElement(haiPhongCityRadio).getAttribute("aria-checked"), "false");
 		Assert.assertEquals(driver.findElement(quangNamCityCheckbox).getAttribute("aria-checked"), "false");
 		Assert.assertEquals(driver.findElement(quangBinhCityCheckbox).getAttribute("aria-checked"), "false");
