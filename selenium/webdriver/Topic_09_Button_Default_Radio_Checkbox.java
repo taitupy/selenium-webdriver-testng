@@ -197,7 +197,7 @@ public class Topic_09_Button_Default_Radio_Checkbox {
 		By winterCheckboxInput = By.cssSelector("input[value='Winter']");
 		
 		// Case 1: Dùng thẻ input
-		// Selenium click(); -> ElementNotInteractableException
+		// Selenium click(); -> ElementNotInteractableException 'Ko work'
 		// isSelected() -> Work
 		
 		// Case 2: Dùng thẻ span
