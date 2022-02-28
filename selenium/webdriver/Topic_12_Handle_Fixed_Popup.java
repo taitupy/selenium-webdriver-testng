@@ -14,7 +14,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_12_Handle_Popup {
+public class Topic_12_Handle_Fixed_Popup {
 	WebDriver driver;
 	WebDriverWait explicitWait;
 	String projectPath = System.getProperty("user.dir");
@@ -129,15 +129,6 @@ public class Topic_12_Handle_Popup {
 		driver.findElement(By.cssSelector("input#billcodes")).sendKeys("841000072647");
 		driver.findElement(By.xpath("//form[@id='formTrack']//button[text()='Tra cứu vận đơn']")).click();
 		sleepInSecond(5);
-	}
-
-
-	public void TC_03_Random_Popup_In_DOM() {
-		
-	}
-	
-	public void TC_04_Random_Popup_Not_In_DOM() {
-		
 	}
 
 	@AfterClass
