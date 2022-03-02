@@ -47,7 +47,7 @@ public class Topic_11_Action_Part_I {
 		action = new Actions(driver);
 		jsExecutor = (JavascriptExecutor) driver;
 		
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 	}
 
@@ -69,6 +69,28 @@ public class Topic_11_Action_Part_I {
 		
 		action.moveToElement(driver.findElement(By.xpath("//div[contains(@class,'background-menu-homepage ')]//span[text()='Sách Trong Nước']"))).perform();
 		sleepInSecond(5);
+		
+		//driver.findElement(By.xpath("//div[contains(@class,'background-menu-homepage ')]//a[text()='Kỹ Năng Sống']")).click();
+		action.click(driver.findElement(By.xpath("//div[contains(@class,'background-menu-homepage ')]//a[text()='Kỹ Năng Sống']"))).perform();
+		
+		Assert.assertTrue(driver.findElement(By.xpath("//strong[text()='Kỹ năng sống']")).isDisplayed());
+		
+	}
+	
+	@Test
+	public void TC_02_Hover_And_Iframe() {
+		driver.get("https://www.fahasa.com/");
+		
+		// Switch vào iframe Facebook
+		driver.switchTo().frame("preview-notification-frame");
+		driver.findElement(By.cssSelector("a#NC_CLOSE_ICON>img")).click();
+		sleepInSecond(2);
+		
+		// Switch về trang parent
+		driver.switchTo().defaultContent();
+		
+		action.moveToElement(driver.findElement(By.xpath("//div[contains(@class,'background-menu-homepage ')]//span[text()='Sách Trong Nước']"))).perform();
+		sleepInSecond(2);
 		
 		//driver.findElement(By.xpath("//div[contains(@class,'background-menu-homepage ')]//a[text()='Kỹ Năng Sống']")).click();
 		action.click(driver.findElement(By.xpath("//div[contains(@class,'background-menu-homepage ')]//a[text()='Kỹ Năng Sống']"))).perform();
@@ -214,7 +236,7 @@ public class Topic_11_Action_Part_I {
 		
 	}
 	
-	@Test
+
 	public void TC_09_Drag_Drop_HTML5_Xpath() throws AWTException {
 		// Dùng Xpath - kéo thả bằng tọa độ
 		driver.get("https://automationfc.github.io/drag-drop-html5/");
