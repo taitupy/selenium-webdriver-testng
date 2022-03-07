@@ -23,7 +23,8 @@ public class Topic_14_Windows_Tab {
 		driver = new ChromeDriver();
 		System.out.println("Driver ID = " + driver.toString());
 		
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
 	}
 
 
@@ -95,7 +96,7 @@ public class Topic_14_Windows_Tab {
 		
 	}
 	
-	@Test
+	
 	public void TC_03_Greater_Than_One_Windows_Or_Tab() {
 		driver.get("http://live.techpanda.org/");
 		
@@ -130,6 +131,41 @@ public class Topic_14_Windows_Tab {
 		
 		System.out.println(driver.getCurrentUrl());
 		System.out.println(driver.getTitle());
+		
+	}
+	
+	@Test
+	public void TC_04_Exercise_Windows_Tab() {
+		driver.get("https://dictionary.cambridge.org/vi/");
+		
+		// Lấy ra ID của 1 tab/ windows mà driver đang đứng (active)
+		String parentTabID = driver.getWindowHandle();
+		
+		driver.findElement(By.xpath("//span[text()='Đăng nhập']")).click();
+		
+		// Switch qua tab thành công
+		switchToTabByID(parentTabID);
+		
+		// Click login button
+		driver.findElement(By.xpath("//input[@value='Log in']")).click();
+		
+		Assert.assertEquals(driver.findElement(By.xpath("//input[@placeholder='Email *']/following-sibling::span")).getText(), "This field is required");
+		Assert.assertEquals(driver.findElement(By.xpath("//input[@placeholder='Password *']/following-sibling::span")).getText(), "This field is required");
+		
+		driver.findElement(By.xpath("//input[@placeholder='Email *']")).sendKeys("tunguyen96spkt@gmail.com");
+		driver.findElement(By.xpath("//input[@placeholder='Password *']")).sendKeys("automation@123");
+		
+		// Click login button
+		driver.findElement(By.xpath("//input[@value='Log in']")).click();
+		sleepInSecond(2);
+		
+		String dictionaryTabID = driver.getWindowHandle();
+		
+		// Switch về Parent tab
+		switchToTabByID(dictionaryTabID);
+		sleepInSecond(5);
+		
+		Assert.assertEquals(driver.findElement(By.xpath("//span[@aria-label='Xem các lựa chọn của người dùng']//span")).getText(), "lex turn");
 		
 	}
 	
