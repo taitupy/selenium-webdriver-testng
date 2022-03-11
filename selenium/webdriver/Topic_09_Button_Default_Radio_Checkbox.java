@@ -89,7 +89,7 @@ public class Topic_09_Button_Default_Radio_Checkbox {
 		
 	}
 
-
+	@Test
 	public void TC_02_Default_Radio() {
 		driver.get("https://demos.telerik.com/kendo-ui/radiobutton/index");
 		
@@ -263,7 +263,7 @@ public class Topic_09_Button_Default_Radio_Checkbox {
 		
 	}
 	
-	@Test
+
 	public void TC_08_Custom_Radio_Google() {
 		driver.get("https://docs.google.com/forms/d/e/1FAIpQLSfiypnd69zhuDkjKgqvpID9kwO29UCzeCVrGGtbNPZXQok0jA/viewform");
 		
