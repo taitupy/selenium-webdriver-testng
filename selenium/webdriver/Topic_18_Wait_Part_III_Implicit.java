@@ -35,7 +35,7 @@ public class Topic_18_Wait_Part_III_Implicit {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.xpath("//div[@id='start']/button")).click();
 
-		WebDriver.Timeouts timeouts = driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
 		Assert.assertEquals(driver.findElement(By.cssSelector("div#finish>h4")).getText(), "Hello World!");
 		
