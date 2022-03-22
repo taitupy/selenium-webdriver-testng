@@ -34,9 +34,9 @@ public class Topic_18_Wait_Part_III_Implicit {
 		
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.xpath("//div[@id='start']/button")).click();
-		
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		
+
+		WebDriver.Timeouts timeouts = driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
 		Assert.assertEquals(driver.findElement(By.cssSelector("div#finish>h4")).getText(), "Hello World!");
 		
 	}
@@ -61,9 +61,19 @@ public class Topic_18_Wait_Part_III_Implicit {
 		driver.findElement(By.xpath("//div[@id='start']/button")).click();
 		
 		Assert.assertEquals(driver.findElement(By.cssSelector("div#finish>h4")).getText(), "Hello World!");
-		
 	}
-
+	
+	@Test
+	public void TC_04_AjaxLoading() {
+		explicitWait = new WebDriverWait(driver, 30);
+		
+		driver.get("https://demos.telerik.com/aspnet-ajax/ajaxloadingpanel/functionality/explicit-show-hide/defaultcs.aspx");
+		
+		driver.findElement(By.xpath("//div[@id='start']/button")).click();
+		
+		Assert.assertEquals(driver.findElement(By.cssSelector("div#finish>h4")).getText(), "Hello World!");
+	}
+	
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
