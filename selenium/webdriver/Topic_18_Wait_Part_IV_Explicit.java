@@ -20,7 +20,7 @@ import static org.testng.Assert.assertTrue;
 import java.io.File;
 import java.util.Date;
 
-public class Topic_18_Wait_Part_V_Explicit {
+public class Topic_18_Wait_Part_IV_Explicit {
 	WebDriver driver;
 	
 	String projectPath = System.getProperty("user.dir");
@@ -95,7 +95,7 @@ public class Topic_18_Wait_Part_V_Explicit {
 		Assert.assertEquals(driver.findElement(helloworldText).getText(), "Hello World!");
 	}
 	
-	@Test
+
 	public void TC_04_AjaxLoading() {
 		explicitWait = new WebDriverWait(driver, 30);
 		
@@ -128,11 +128,11 @@ public class Topic_18_Wait_Part_V_Explicit {
 		Assert.assertTrue(todaySelected.isDisplayed());
 	}
 	
-
+	@Test
 	public void TC_05_Upload_Files() {
-		explicitWait = new WebDriverWait(driver, 90);
-		
 		driver.get("https://gofile.io/uploadFiles");
+		
+		explicitWait = new WebDriverWait(driver, 90);
 		
 		By uploadFileBy = By.xpath("//input[@type='file']");
 		
